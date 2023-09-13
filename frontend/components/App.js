@@ -3,7 +3,7 @@ import axios from 'axios'
 import TodoList from './TodoList'
 import Form from './Form'
 
-const URL = 'http://localhost:9000/api/todos'
+const URL = 'http://localhost:9000/api/todoz'
 
 export default class App extends React.Component {
 state = {
@@ -11,7 +11,7 @@ state = {
   error:'',
 }
 
-errorMessage = () => this.setState({ ...this.state, error: err.response.data.message })
+errorMessage = (err) => this.setState({ ...this.state, error: err.response.data.message })
 
 postNewTodos = (input) => {
   axios.post(URL, {name: input})
@@ -19,7 +19,7 @@ postNewTodos = (input) => {
     this.fetchAllTodos()
   })
   .catch(err => {
-    this.errorMessage()
+    this.errorMessage(err)
   })
 
 }
@@ -33,7 +33,7 @@ fetchAllTodos = () => {
   })
  })
  .catch(err => {
-  this.errorMessage
+  this.errorMessage(err)
  })
 }
 
