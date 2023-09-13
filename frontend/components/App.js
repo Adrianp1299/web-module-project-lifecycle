@@ -11,13 +11,15 @@ state = {
   error:'',
 }
 
+errorMessage = () => this.setState({ ...this.state, error: err.response.data.message })
+
 postNewTodos = (input) => {
   axios.post(URL, {name: input})
   .then(res => {
     this.fetchAllTodos()
   })
   .catch(err => {
-    this.setState({ ...this.state, error: err.response.data.message })
+    this.errorMessage()
   })
 
 }
@@ -31,12 +33,15 @@ fetchAllTodos = () => {
   })
  })
  .catch(err => {
-  this.setState({ ...this.state, error: err.response.data.message })
+  this.errorMessage
  })
 }
+
+
 componentDidMount() {
   this.fetchAllTodos()
 }
+
   render() {
     return (
       <div>
