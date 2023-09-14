@@ -22,11 +22,16 @@ export default class Form extends React.Component {
   }
 
   render() {
+    const { toggleShowAll } = this.props
+    
     return (
+      <div>
       <form onSubmit={this.onSubmit}>
         <input type="text" value={this.state.input} onChange={this.onChange} />
         <input type = "submit" />
       </form>
+      <button onClick={toggleShowAll}>Clear Completed</button>
+      </div>
     )
   }
 }
